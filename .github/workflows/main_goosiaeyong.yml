@@ -31,15 +31,15 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         
-      #- name: Verify JAR creation
-       # run: ls -al $GITHUB_WORKSPACE/build/libs
+      - name: Verify JAR creation
+        run: ls -al $GITHUB_WORKSPACE/build/libs
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
-          #path: $GITHUB_WORKSPACE/build/libs/*.jar # JAR 파일 경로 수정
+          #path: '${{ github.workspace }}/target/*.jar'
+          path: $GITHUB_WORKSPACE/build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,6 +69,6 @@ jobs:
         with:
           app-name: 'goosiaeyong'
           slot-name: 'Production'
-          package: '*.jar'
-          #package: ${{ runner.temp }}/java-app/*.jar
+          #package: '*.jar'
+          package: ${{ runner.temp }}/java-app/*.jar
           
