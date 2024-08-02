@@ -31,14 +31,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         
-      - name: Verify JAR creation
-        run: ls -al $GITHUB_WORKSPACE/build/libs
-        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          #path: '${{ github.workspace }}/target/*.jar'
           path: 'build/libs/*.jar'
 
   deploy:
@@ -55,6 +51,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-app
+          path: 'java-app' # 다운로드할 경로를 설정합니다.
+        # 빌드 작업에서 생성된 아티팩트를 다운로드합니다.
+      
+      - name: Verify Downloaded JAR
+        run: ls -al java-app
+        # 다운로드된 JAR 파일이 존재하는지 확인합니다.
       
       - name: Login to Azure
         uses: azure/login@v2
