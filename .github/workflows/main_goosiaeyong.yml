@@ -39,7 +39,7 @@ jobs:
         with:
           name: java-app
           #path: '${{ github.workspace }}/target/*.jar'
-          path: $GITHUB_WORKSPACE/build/libs/*.jar
+          path: 'build/libs/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # JWT 요청을 위해 필요
   
     steps:
       - name: Download artifact from build job
@@ -70,5 +70,5 @@ jobs:
           app-name: 'goosiaeyong'
           slot-name: 'Production'
           #package: '*.jar'
-          package: ${{ runner.temp }}/java-app/*.jar
+          package: 'java-app/k_html-0.0.1-SNAPSHOT.jar'
           
