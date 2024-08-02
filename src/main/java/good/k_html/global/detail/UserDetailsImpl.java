@@ -1,5 +1,6 @@
 package good.k_html.global.detail;
 
+import good.k_html.domain.User.entity.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
