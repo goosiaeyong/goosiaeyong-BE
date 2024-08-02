@@ -8,6 +8,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -60,19 +61,19 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     }
 
     // 인증 처리
-    public void setAuthentication(String username) {
+    public void setAuthentication(String userEmail) {
 
         SecurityContext context = SecurityContextHolder.createEmptyContext();
-        Authentication authentication = createAuthentication(username);
+        Authentication authentication = createAuthentication(userEmail);
         context.setAuthentication(authentication);
 
         SecurityContextHolder.setContext(context);
     }
 
     // 인증 객체 생성
-    private Authentication createAuthentication(String username) {
+    private Authentication createAuthentication(String userEmail) {
 
-        UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(username);
+        UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(userEmail);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
