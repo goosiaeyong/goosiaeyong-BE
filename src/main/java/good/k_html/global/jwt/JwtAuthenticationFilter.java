@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            requestDTO.getUsername(),
+                            requestDTO.getUserEmail(),
                             requestDTO.getPassword(),
                             null
                     )
@@ -60,17 +60,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         UserDetailsImpl userDetails = ((UserDetailsImpl) authResult.getPrincipal());
 
-        String token = jwtUtil.createToken(userDetails.getUsername());
+        String token = jwtUtil.createToken(userDetails.getUser().getUserEmail());
 
         jwtUtil.addJwtToCookie(token, response);
 
         AuthResponseDTO authResponseDTO = new AuthResponseDTO(userDetails.getUser());
 
-        ApiResponse<Object> apiResponse = new ApiResponse<>("로그인 성공", authResponseDTO);
-
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(new ObjectMapper().writeValueAsString(apiResponse));
+        response.getWriter()
+                .write(new ObjectMapper().writeValueAsString(
+                        ApiResponse.of("로그인 성공", authResponseDTO)));
     }
 
     @Override
@@ -81,11 +81,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         log.info("로그인 실패:{}", failed.getMessage());
 
-        ApiResponse<Object> apiResponse = new ApiResponse<>(
-                "로그인 실패 : " + failed.getMessage(), null);
-
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(new ObjectMapper().writeValueAsString(apiResponse));
+        response.getWriter().write(new ObjectMapper()
+                .writeValueAsString(
+                        ApiResponse.of("로그인 실패 : " + failed.getMessage(), null)));
     }
 }
