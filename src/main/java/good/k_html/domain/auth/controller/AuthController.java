@@ -4,6 +4,7 @@ import good.k_html.domain.auth.dto.request.AuthRequestDTO;
 import good.k_html.domain.auth.dto.response.AuthResponseDTO;
 import good.k_html.domain.auth.service.AuthService;
 import good.k_html.global.response.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auths")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -21,9 +22,9 @@ public class AuthController {
 
     @PostMapping("/sign")
     public ResponseEntity<ApiResponse<AuthResponseDTO>> signUser(
-            @RequestBody AuthRequestDTO authRequestDTO){
+            @RequestBody @Valid AuthRequestDTO authRequestDTO){
 
-        AuthResponseDTO authResponseDTO = authService.signUser();
+        AuthResponseDTO authResponseDTO = authService.signUser(authRequestDTO);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
