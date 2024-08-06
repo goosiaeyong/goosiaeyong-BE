@@ -1,11 +1,14 @@
 package good.k_html.global.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -15,17 +18,22 @@ public class GlobalExceptionHandler {
 
         ErrorCode errorCode = customException.getErrorCode();
 
-        return new ResponseEntity<>(
-                new ApiResponse<>(
-                        errorCode.getMessage(),
-                        null),
-                HttpStatus.valueOf(errorCode.getStatus()));
-
+        return ResponseEntity
+                .status(errorCode.getStatus())
+                .body(ApiResponse.of(errorCode.getMessage(), null));
     }
-    @Getter
-    @AllArgsConstructor
-    static class ErrorResponse {
-        private int status;
-        private String message;
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String errorName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(errorName, errorMessage);
+        });
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.of("유효성 검사 실패", errors));
     }
 }
