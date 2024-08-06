@@ -41,8 +41,13 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    public void addJwtHeader(HttpServletResponse response, String token){
+
+        response.addHeader("Authorization", "Bearer " + token);
+    }
+
     // JWT를 쿠키에 저장하고 응답 헤더에 추가
-    public void addJwtToCookie(String token, HttpServletResponse response) {
+/*    public void addJwtToCookie(String token, HttpServletResponse response) {
 
         token = URLEncoder.encode(token, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
 
@@ -53,7 +58,7 @@ public class JwtUtil {
 
         // 응답 헤더에 쿠키 추가
         response.addCookie(cookie);
-    }
+    }*/
 
     // JWT 토큰 substring
     public String substringToken(String tokenValue) {
