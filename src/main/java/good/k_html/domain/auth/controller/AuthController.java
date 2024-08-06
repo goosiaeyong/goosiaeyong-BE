@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/sign")
     public ResponseEntity<ApiResponse<AuthResponseDTO>> signUser(
-            @RequestBody @Valid AuthRequestDTO authRequestDTO){
+            @RequestBody @Valid AuthRequestDTO authRequestDTO) {
 
         AuthResponseDTO authResponseDTO = authService.signUser(authRequestDTO);
 

@@ -15,8 +15,8 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR(500, "Internal server error."),
 
     //auth
-    NOT_EQUALS_PASSWORD(400,"비밀번호가 일치하지 않습니다."),
-    ALREADY_USER_EMAIL(400,"이미 있는 이메일 입니다.");
+    NOT_EQUALS_PASSWORD(400, "비밀번호가 일치하지 않습니다."),
+    ALREADY_USER_EMAIL(400, "이미 있는 이메일 입니다.");
 
     private final int status;
 

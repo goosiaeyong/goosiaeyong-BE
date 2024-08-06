@@ -1,9 +1,9 @@
 package good.k_html.global.config;
 
+import good.k_html.global.detail.UserDetailsServiceImpl;
 import good.k_html.global.jwt.JwtAuthenticationFilter;
 import good.k_html.global.jwt.JwtAuthorizationFilter;
 import good.k_html.global.jwt.JwtUtil;
-import good.k_html.global.detail.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
