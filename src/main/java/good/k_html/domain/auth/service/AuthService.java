@@ -17,12 +17,12 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthResponseDTO signUser(AuthRequestDTO authRequestDTO){
+    public AuthResponseDTO signUser(AuthRequestDTO authRequestDTO) {
 
-        if(!authRequestDTO.getPassword().equals(authRequestDTO.getPasswordConfirm())){
+        if (!authRequestDTO.getPassword().equals(authRequestDTO.getPasswordConfirm())) {
             throw new CustomException(ErrorCode.NOT_EQUALS_PASSWORD);
         }
-        if(userRepository.findByUserEmail(authRequestDTO.getUserEmail()).isPresent()){
+        if (userRepository.findByUserEmail(authRequestDTO.getUserEmail()).isPresent()) {
             throw new CustomException(ErrorCode.ALREADY_USER_EMAIL);
         }
 
