@@ -2,7 +2,6 @@ package good.k_html.global.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,16 +30,16 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(userEmail)
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1시간 유효
-                .signWith(getSignKey(secret),SignatureAlgorithm.HS512)
+                .signWith(getSignKey(secret), SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    private SecretKey getSignKey(String secret){
+    private SecretKey getSignKey(String secret) {
 
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public void addJwtHeader(HttpServletResponse response, String token){
+    public void addJwtHeader(HttpServletResponse response, String token) {
 
         response.addHeader("Authorization", "Bearer " + token);
     }

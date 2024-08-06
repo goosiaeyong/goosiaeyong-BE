@@ -1,14 +1,13 @@
 package good.k_html.global.jwt;
 
-import good.k_html.global.response.CustomException;
 import good.k_html.global.detail.UserDetailsServiceImpl;
+import good.k_html.global.response.CustomException;
 import good.k_html.global.response.ErrorCode;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

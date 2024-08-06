@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<Void>> HealthCheck(){
+    public ResponseEntity<ApiResponse<Void>> HealthCheck() {
 
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("home",null));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("home", null));
     }
 }
