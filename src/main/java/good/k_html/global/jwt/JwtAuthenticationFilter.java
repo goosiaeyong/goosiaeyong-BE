@@ -62,7 +62,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String token = jwtUtil.createToken(userDetails.getUser().getUserEmail());
 
-        jwtUtil.addJwtToCookie(token, response);
+        jwtUtil.addJwtHeader(response, token);
 
         AuthResponseDTO authResponseDTO = new AuthResponseDTO(userDetails.getUser());
 
