@@ -18,7 +18,7 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    @Value("${JWT_SECRET_KEY}") // Base64 Encode 한 SecretKey
+    @Value("${jwt.secret}")
     private String secret;
 
     // JWT 생성
