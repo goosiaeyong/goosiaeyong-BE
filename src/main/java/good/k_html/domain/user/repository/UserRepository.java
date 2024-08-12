@@ -1,6 +1,6 @@
-package good.k_html.domain.User.repository;
+package good.k_html.domain.user.repository;
 
-import good.k_html.domain.User.entity.User;
+import good.k_html.domain.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

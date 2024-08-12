@@ -1,4 +1,4 @@
-package good.k_html.domain.User.entity;
+package good.k_html.domain.user.entity;
 
 import good.k_html.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;

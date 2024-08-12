@@ -1,6 +1,6 @@
 package good.k_html.domain.auth.dto.response;
 
-import good.k_html.domain.User.entity.User;
+import good.k_html.domain.user.entity.User;
 import lombok.Getter;
 
 @Getter

@@ -1,7 +1,7 @@
 package good.k_html.domain.auth.service;
 
-import good.k_html.domain.User.entity.User;
-import good.k_html.domain.User.repository.UserRepository;
+import good.k_html.domain.user.entity.User;
+import good.k_html.domain.user.repository.UserRepository;
 import good.k_html.domain.auth.dto.request.AuthRequestDTO;
 import good.k_html.domain.auth.dto.response.AuthResponseDTO;
 import good.k_html.global.response.CustomException;
