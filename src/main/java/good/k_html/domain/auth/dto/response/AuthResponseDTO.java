@@ -12,9 +12,12 @@ public class AuthResponseDTO {
 
     private String userEmail;
 
+    private String areaNM;
+
     public AuthResponseDTO(User user) {
         this.userEmail = user.getUserEmail();
         this.username = user.getUsername();
         this.userId = user.getUserId();
+        this.areaNM = user.getAreaNM();
     }
 }

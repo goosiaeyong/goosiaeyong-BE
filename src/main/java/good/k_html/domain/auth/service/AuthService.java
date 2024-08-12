@@ -30,6 +30,7 @@ public class AuthService {
 
         user.setUsername(authRequestDTO.getUsername());
         user.setUserEmail(authRequestDTO.getUserEmail());
+        user.setAreaNM(authRequestDTO.getAreaNM());
         user.setPassword(passwordEncoder.encode(authRequestDTO.getPassword()));
 
         userRepository.save(user);
