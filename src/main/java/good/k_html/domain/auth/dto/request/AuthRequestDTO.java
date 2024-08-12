@@ -16,6 +16,9 @@ public class AuthRequestDTO {
     private String userEmail;
 
     @NotBlank
+    private String areaNM;
+
+    @NotBlank
     @Pattern(
             regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
             message = "비밀번호는 최소 8자 이상이며, 영문자와 숫자를 포함해야 합니다."
