@@ -1,6 +1,6 @@
 package good.k_html.domain.auth.dto.response;
 
-import good.k_html.domain.User.entity.User;
+import good.k_html.domain.user.entity.User;
 import lombok.Getter;
 
 @Getter
@@ -12,9 +12,12 @@ public class AuthResponseDTO {
 
     private String userEmail;
 
+    private String areaNM;
+
     public AuthResponseDTO(User user) {
         this.userEmail = user.getUserEmail();
         this.username = user.getUsername();
         this.userId = user.getUserId();
+        this.areaNM = user.getAreaNM();
     }
 }

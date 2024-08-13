@@ -1,4 +1,4 @@
-package good.k_html.domain.User.entity;
+package good.k_html.domain.user.entity;
 
 import good.k_html.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -19,6 +19,9 @@ public class User extends BaseTimeEntity {
     @Setter
     @Column(unique = true)
     private String userEmail;
+
+    @Setter
+    private String areaNM;
 
     @Setter
     private String password;
