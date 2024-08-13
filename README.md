@@ -3,7 +3,7 @@
 ###  1. Personal Role
 | Name                                   | Role                                |
 |----------------------------------------|:-------------------------------------:|
-| 이주원  | 기획 및 발표 |
+| [이주원](https://github.com/jjww202010)  | 기획 및 발표 |
 | [창다은](https://github.com/daeundada)    | BE 및 디자인 |
 | [김진호](https://github.com/jhjh-kim) | AI | AI 개발 | 
 | [이윤서](https://github.com/yunseoLee0343)      | FE | 앱 개발 |
